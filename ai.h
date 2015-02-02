@@ -20,6 +20,7 @@ private:
     Game *game;
     int** createArray();
     int** copyArray(int **a);
+    void delArray(int **a);
 };
 
 #endif // AI_H

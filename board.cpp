@@ -18,7 +18,11 @@ Board::Board()
 
 Board::~Board()
 {
-
+    for(int i = 0; i < 3; i++)
+    {
+        delete [] board[i];
+    }
+    delete [] board;
 }
 
 void Board::place(int row, int cell, int value)

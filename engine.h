@@ -28,7 +28,6 @@ private:
     static void drawCross(int row, int cell, int highlight = 0);
     static void drawBoard(int **board);
     static GLFWwindow* window;
-    static int **board;
     static int row;
     static int cell;
     static Game *game;

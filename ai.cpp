@@ -7,14 +7,15 @@ AI::AI()
 
 AI::~AI()
 {
-
+    delete game;
 }
 
 int** AI::createArray()
 {
     int **tmp = new int*[3];
 
-    for(int i = 0; i < 3; i++) {
+    for(int i = 0; i < 3; i++)
+    {
         tmp[i] = new int[3];
 
         for(int j = 0; j < 3; j++)
@@ -30,7 +31,8 @@ int** AI::copyArray(int **a)
 {
     int **tmp = new int*[3];
 
-    for(int i = 0; i < 3; i++) {
+    for(int i = 0; i < 3; i++)
+    {
         tmp[i] = new int[3];
 
         for(int j = 0; j < 3; j++)
@@ -40,6 +42,15 @@ int** AI::copyArray(int **a)
     }
 
     return tmp;
+}
+
+void AI::delArray(int **a)
+{
+    for(int i = 0; i < 3; i++)
+    {
+        delete [] a[i];
+    }
+    delete [] a;
 }
 
 void AI::setGame(Game *g)
@@ -111,6 +122,7 @@ void AI::findBest(int *row, int *cell)
                 int **b2 = copyArray(b);
                 b2[i][j] = -1;
                 best[i][j] += gameTree(b2,(this->game->getTurn() * -1), (this->game->getRounds()+1));
+                delArray(b2);
             }
         }
     }
@@ -132,6 +144,7 @@ void AI::findBest(int *row, int *cell)
     }
     *row = bi;
     *cell = bj;
+    delArray(best);
 }
 
 // Game tree logic
@@ -167,6 +180,7 @@ int AI::gameTree(int **b, int t, int r)
                 {
                     best += result;
                 }
+                delArray(b2);
             }
         }
     }

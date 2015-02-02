@@ -1,7 +1,6 @@
 #include "engine.h"
 
 GLFWwindow* Engine::window;
-int** Engine::board;
 int Engine::row = 0;
 int Engine::cell = 0;
 Game *Engine::game;
