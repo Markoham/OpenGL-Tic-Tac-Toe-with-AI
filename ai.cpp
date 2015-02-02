@@ -58,15 +58,17 @@ void AI::findBest(int *row, int *cell)
     if(this->game->getRounds() == 2)
     {
         if(b[0][0] == 1)
-            best[2][2] += -100;
+            best[1][1] += -100;
         else if(b[0][2] == 1)
-            best[2][0] += -100;
+            best[1][1] += -100;
         else if(b[2][0] == 1)
-            best[0][2] += -100;
+            best[1][1] += -100;
         else if(b[2][2] == 1)
+            best[1][1] += -100;
+        else if(b[1][1] == 0)
+            best[1][1] += -100;
+        else if(b[0][0] == 0)
             best[0][0] += -100;
-        else if(b[2][2] == 0)
-            best[2][2] += -100;
     }
     else
     {
@@ -104,7 +106,6 @@ void AI::findBest(int *row, int *cell)
     {
         for(int j = 0; j < 3; j++)
         {
-            std::cout << "b: " << b[i][j] << std::endl;
             if(b[i][j] == 0)
             {
                 int **b2 = copyArray(b);
@@ -114,7 +115,6 @@ void AI::findBest(int *row, int *cell)
         }
     }
 
-    std::cout << "best move!" << std::endl;
     // Find best move
     int bi = 0, bj = 0;
     int bv = 100;
